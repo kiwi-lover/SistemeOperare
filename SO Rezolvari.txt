@@ -1,0 +1,18 @@
+Exercitiul 1:
+
+head -n 15 /etc/passwd | cut -d: -f1,7 | grep /sbin/nologin | cut -d: -f1 | grep [m-z]$ > max15.txt
+
+
+Varianta mai eficienta
+head -n 15 /etc/passwd | cut -f1,7 -d:  | grep /sbin/nologin | cut -f1 -d: | grep [m-z]$ > max15.txt
+
+Exercitiul 2:
+ps -C bash | grep pts/[0125] | sort -nr -k1 -o output.txt
+
+Exercitiul 3:
+last | head -n 8 | tr -s " " | cut -d" " -f3 >filtruIps.txt
+
+Exercitiul 4:
+ps -eo user,comm,pid --no-headers | tr -s " " | cut -d" " -f1,2,3 | sed 's/ /:/g' | sort -t: -k2
+
+3,4,1,2
