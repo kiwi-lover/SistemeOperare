@@ -1,0 +1,21 @@
+print_powers_of_two() {
+    local k=$1
+    local power=$2
+
+    if (( k < 0 )); then
+        return
+    fi
+
+    print_powers_of_two $((k - 1)) $((power / 2))
+    echo "2^$k = $power"
+}
+
+read -p "Introduceți un număr: " n
+if ! [[ "$n" =~ ^[0-9]+$ ]]; then
+    echo "Eroare: Introduceți un număr întreg valid." >&2
+    exit 1
+fi
+
+echo "Puterile lui 2 de la 2^0 la 2^$n sunt:"
+
+print_powers_of_two "$n" $((1 << n))
